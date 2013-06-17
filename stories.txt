@@ -1,0 +1,5 @@
+As a user, I want to be able to add an Air Quality Egg.
+
+As a user, I want to be able to delete an Air Quality Egg.
+
+As a user, I want to be able to see the status of multiple Air Quality Eggs at once.

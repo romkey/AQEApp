@@ -1,0 +1,41 @@
+html {
+    overflow-y: scroll;
+    background-color: #53CAEB;
+    background-repeat: repeat-x;
+    background-position: left top;
+}
+
+body {
+    font-family: helvetica;
+    margin: 2em;
+    padding-bottom: 100px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    padding: 1em;
+    border-top: 1px solid black;
+    background-color: #53CAEB;
+    width: 100%;
+    z-index: 10;
+}
+
+#plus {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    padding: .25em;
+    z-index: 10;
+    font-size: 4em;
+}
+
+#egg_id_form {
+    z-index: 10;
+    position: fixed;
+    background: black;
+    color: white;
+    top: 30%;
+    left: 30%;
+}

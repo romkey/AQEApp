@@ -1,0 +1,24 @@
+{
+    "name": "Air Quality Egg App",
+    "description": "Air Quality Egg App",
+    "version": "0.1.0",
+    "app": {
+	"background": {
+	    "scripts": [ "js/background.js" ]
+	}
+    },
+    "sandbox": {
+        "pages": [ "templates.html" ]
+    },
+    "icons": {
+	"48": "img/icon-48.jpg",
+	"128": "img/icon-128.jpg",
+	"512": "img/icon-512.jpg"
+    },
+    "minimum_chrome_version": "23.0.0",
+    "permissions": [
+        "https://api.xively.com/",
+	"notifications",
+	"storage"
+    ]
+}
