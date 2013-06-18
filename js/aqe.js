@@ -38,17 +38,6 @@ var AQESensorList = Backbone.Collection.extend( {
     url: function() { return ''; },
 } );
 
-
-/*
- * attributes:
- *    status    0  - error, 1 - success
- *    on success, aqe - egg
- *    on error, message - 
- */
-var AQEStatus = Backbone.Model.extend( {
-
-} );
-
 /***********************************************************************
  ***********************************************************************
  *
@@ -103,8 +92,7 @@ var AQE = Backbone.Model.extend( {
 		egg.save();
 	    }
 	} );
-    },
-    
+    }    
 } );
 
 /***********************************************************************
@@ -116,9 +104,7 @@ var AQE = Backbone.Model.extend( {
  *
  */
 var AQEList = Backbone.Collection.extend( {
-    model: AQE,
-
-    url: function() { return 'x'; },
+    model: AQE
 } );
 
 
@@ -185,10 +171,10 @@ var AQEAppView = Backbone.View.extend( {
 	egg.update();
 
 	this.model.trigger( 'change' );
-    },
+    }
 
 } );
 
-var App = new AQEAppView;
+var App = new AQEAppView();
 
 } );

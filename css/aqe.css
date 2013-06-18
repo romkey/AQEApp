@@ -39,3 +39,7 @@ footer {
     top: 30%;
     left: 30%;
 }
+
+#renderer {
+    display: none;
+}

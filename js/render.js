@@ -11,8 +11,27 @@
  *    failure       callback( id, message )
  *
  */
-function Render( options ) {
-    
-    
+var Renderer = {
+    callbacks: {},
+
+    init: function() {
+	window.addEventListener( "message", Renderer.response, false );
+    },
+
+    render: function( options ) {
+	var renderer = $( '#renderer' );
+	var msg = {
+	    cmd: 'render',
+	
+	};
+
+	renderer.contentWindow.postMessage( msg, '*' );
+    },
+
+    response: function( e ) {
+	if( e.data.cmd == 'render-results' ) {
+	    
+	}
+    }
 };
 

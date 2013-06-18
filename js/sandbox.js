@@ -43,6 +43,7 @@ function renderMsg( e ) {
 	}
 
         e.source.postMessage( {
+	    cmd: 'render-results',
             id: e.data.id,
 	    status: status,
             result: result
