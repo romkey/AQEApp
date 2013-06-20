@@ -23,33 +23,55 @@
  *    result     either the result of the render or an error message
  *
  */
-function renderMsg( e ) {
-    switch( e.data.cmd ) {
-    case 'render':
-	var status = 'ok';
-	var result;
-	var template = e.data.template;
+var RenderServer = {
+    init: function() {
+	$( window ).on( 'message', function( e ) { RenderServer.renderMsg( e ); } );
+	$( 'body' ).append( 'init done' );
+    },
 
-	if( typeof e.data.template_id == 'undefined' ) {
-	    status = 'error';
-	    result = 'No template or template ID given';
-	} else {
-	    try {
-		result = _.template( $( e.data.template_id ), e.data.context );
-	    } catch( e ) {
+    renderMsg: function( e ) {
+	$( 'body' ).append( 'got msg' );
+
+	console.log( e );
+
+	var data = e.originalEvent.data;
+	console.log( 'render data' );
+	console.log( data.context );
+
+	switch( data.cmd ) {
+	case 'render':
+	    var status = 'ok';
+	    var result;
+	    var template = data.template;
+
+	    if( typeof data.template_id == 'undefined' && typeof data.template == 'undefined' ) {
 		status = 'error';
-		result = e.message;
+		result = 'No template or template ID given';
+	    } else {
+		try {
+		    $( 'body' ).append( '<pre>template is ' + $( '#' + data.template_id ).html() + '</pre>' );
+		    $( 'body' ).append( 'template_id is ' + data.template_id );
+		    $( 'body' ).append( JSON.stringify( data.context ) );
+//		    result = _.template( $( '#' + data.template_id ).html(), data.context );
+		    result = _.template( $( '#' + data.template_id ).html(), { name: 'foo', description: 'bar' } );
+		    $( 'body' ).append( '<pre>render result ' + result + '</pre>' );
+		} catch( e ) {
+		    status = 'error';
+		    result = 'render exception: ' + e.message;
+		}
 	    }
-	}
 
-        e.source.postMessage( {
-	    cmd: 'render-results',
-            id: e.data.id,
-	    status: status,
-            result: result
-        } );
+            e.originalEvent.source.postMessage( {
+		cmd: 'render-results',
+		id: data.id,
+		status: status,
+		result: result
+            }, '*' );
+	}
     }
-};
+}
 
 // catch the message
-$( window ).on( 'render', function( e ) { renderMsg( e ); } );
+$( document ).ready( function() { RenderServer.init(); } );
+
+

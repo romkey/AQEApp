@@ -146,6 +146,15 @@ var AQEAppView = Backbone.View.extend( {
     render: function() {
 	console.log( 'render' );
 	$( '#egg-count' ).html( this.model.get( 'eggs' ).size() );
+	console.log( 'attemping render' );
+	console.log( this.model.get( 'eggs' ).first().attributes );
+	Renderer.render( { id: 'egg',
+			   template_id: 'egg',
+//			   context: this.model.get( 'eggs' ).first().attributes,
+			   context: { name: 'foo', description: 'bar' },
+			   success: function( result ) { console.log( 'success ' + result ); },
+			   failure: function( result ) { console.log( 'failure ' + result ); }
+			 } );
     },
 
 

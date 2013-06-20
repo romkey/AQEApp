@@ -13,25 +13,51 @@
  */
 var Renderer = {
     callbacks: {},
+    iframe: {},
 
     init: function() {
 	window.addEventListener( "message", Renderer.response, false );
+
+	Renderer.iframe = document.getElementById('templates');
     },
 
     render: function( options ) {
 	var renderer = $( '#renderer' );
 	var msg = {
 	    cmd: 'render',
-	
+	    id: options.id,
+	    settings: options.settings,
+	    context: options.context
 	};
 
-	renderer.contentWindow.postMessage( msg, '*' );
+	if( options.template ) {
+	    msg.template = options.template;
+	}
+
+	if( options.template_id ) {
+	    msg.template_id = options.template_id;
+	}
+
+	Renderer.callbacks[ options.id ] = {};
+	Renderer.callbacks[ options.id ].success = options.success;
+	Renderer.callbacks[ options.id ].failure = options.failure;
+
+	Renderer.iframe.contentWindow.postMessage( msg, '*' );
     },
 
     response: function( e ) {
 	if( e.data.cmd == 'render-results' ) {
-	    
+	    if( e.data.status == 'ok' ) {
+		Renderer.callbacks[ e.data.id ].success( e.data.result );
+	    } else {
+		Renderer.callbacks[ e.data.id ].failure( e.data.result );
+	    }
+
+	    // get rid of the callback
+	    delete Renderer.callbacks[ e.data.id ];
 	}
     }
 };
+
+$( document).ready( function() { Renderer.init(); } );
 

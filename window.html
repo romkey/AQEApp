@@ -20,19 +20,21 @@
     </div>
     <form id='egg_id_form'>
         <fieldset>
-            <label>Sensor ID</label><input type='number' size='8' name='sensor_id' />
+            <label>Sensor ID</label><input type='number' size='8' name='sensor_id' value="122318" />
             <input type='submit' value='Add Sensor' />
         </fieldset>
     </form>
-    <iframe id='renderer' src='/templates.html'></iframe>
+    <iframe id="templates" src="templates.html" height=600 width=800></iframe>
     <footer>
     App written by <a href='http://romkey.com'>John Romkey</a>. <a href='https://github.com/romkey/AQEApp' target='_blank'>Source code on Github.</a> <a href='https://chrome.google.com/webstore/detail/aqeapp/' target='_blank'>Chrome app on Chrome store.</a>
     </footer>
+    <script src='ext/less-1.3.3.min.js'></script>
     <script src='ext/jquery-2.0.0.min.js'></script>
     <script src='ext/jquery-ui-1.10.3.custom.min.js'></script>
     <script src='ext/underscore-min.js'></script>
     <script src='ext/backbone.js'></script>
     <script src='ext/backbone.chromestorage-min.js'></script>
     <script src='js/aqe.js'></script>
+    <script src='js/render.js'></script>
   </body> 
 </html>

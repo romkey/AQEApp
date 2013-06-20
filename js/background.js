@@ -8,4 +8,4 @@ chrome.app.runtime.onLaunched.addListener( function() {
 
 
 // handle rendering events
-window.addEventListener( "message", receiveMessage, false );
+// window.addEventListener( "message", receiveMessage, false );
