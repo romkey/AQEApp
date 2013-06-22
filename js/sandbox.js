@@ -26,17 +26,10 @@
 var RenderServer = {
     init: function() {
 	$( window ).on( 'message', function( e ) { RenderServer.renderMsg( e ); } );
-	$( 'body' ).append( 'init done' );
     },
 
     renderMsg: function( e ) {
-	$( 'body' ).append( 'got msg' );
-
-	console.log( e );
-
 	var data = e.originalEvent.data;
-	console.log( 'render data' );
-	console.log( data.context );
 
 	switch( data.cmd ) {
 	case 'render':
@@ -49,12 +42,7 @@ var RenderServer = {
 		result = 'No template or template ID given';
 	    } else {
 		try {
-		    $( 'body' ).append( '<pre>template is ' + $( '#' + data.template_id ).html() + '</pre>' );
-		    $( 'body' ).append( 'template_id is ' + data.template_id );
-		    $( 'body' ).append( JSON.stringify( data.context ) );
-//		    result = _.template( $( '#' + data.template_id ).html(), data.context );
-		    result = _.template( $( '#' + data.template_id ).html(), { name: 'foo', description: 'bar' } );
-		    $( 'body' ).append( '<pre>render result ' + result + '</pre>' );
+		    result = _.template( $( '#' + data.template_id ).html(), data.context );
 		} catch( e ) {
 		    status = 'error';
 		    result = 'render exception: ' + e.message;

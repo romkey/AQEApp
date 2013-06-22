@@ -40,6 +40,6 @@ footer {
     left: 30%;
 }
 
-#renderer {
-    display: templates;
+#templates {
+    display: none;
 }
