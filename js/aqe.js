@@ -21,7 +21,7 @@ var api_key = 'moWTPkq024jsxQGV0l9hCIFPQtsN3qFaMy5yxC86zgaOz3nx';
  *    units
  */
 var AQESensor = Backbone.Model.extend( {
-    url: function() { return ''; },
+    url: function() { return ''; }
 } );
 
 /***********************************************************************
@@ -32,10 +32,10 @@ var AQESensor = Backbone.Model.extend( {
  *
  */
 var AQESensorList = Backbone.Collection.extend( { 
-    model: AQESensor,
+    model: new AQESensor(),
     chromeStorage: new Backbone.ChromeStorage( "AirQualityEggList", "sync"),
 
-    url: function() { return ''; },
+    url: function() { return ''; }
 } );
 
 /***********************************************************************
@@ -60,7 +60,7 @@ var AQE = Backbone.Model.extend( {
 
     initialize: function() {
 	this.set( { url: 'https://api.xively.com/v2/feeds/' + this.get( 'id' ) + '.json',
-		   sensors: new AQESensorList
+		    sensors: new AQESensorList()
 		 } );
 	console.log( 'init url ' + this.get( 'url' ) );
     },
@@ -119,7 +119,7 @@ var AQEAppModel = Backbone.Model.extend( {
     chromeStorage: new Backbone.ChromeStorage( "AirQualityEggApp", "sync" ),
 
     initialize: function() {
-	this.set( { eggs: new AQEList } );
+	this.set( { eggs: new AQEList() } );
 
 	// bubble up changes from this.eggs
 //	this.listenTo( this.eggs, 'change', function() { this.trigger( 'change' ); } );
@@ -129,7 +129,7 @@ var AQEAppModel = Backbone.Model.extend( {
 var AQEAppView = Backbone.View.extend( {
     el: $( '#AQEApp' ),
 
-    model: new AQEAppModel,
+    model: new AQEAppModel(),
 
 //    template: _.template( '#app_template' ),
 

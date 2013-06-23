@@ -43,9 +43,9 @@ var RenderServer = {
 	    } else {
 		try {
 		    result = _.template( $( '#' + data.template_id ).html(), data.context );
-		} catch( e ) {
+		} catch( exception ) {
 		    status = 'error';
-		    result = 'render exception: ' + e.message;
+		    result = 'render exception: ' + exception.message;
 		}
 	    }
 
@@ -57,7 +57,7 @@ var RenderServer = {
             }, '*' );
 	}
     }
-}
+};
 
 // catch the message
 $( document ).ready( function() { RenderServer.init(); } );

@@ -48,6 +48,32 @@ module.exports = function( grunt ) {
 		]
 	    }
 	},
+	less: {
+	    development: {
+		options: {
+		    paths: [ "css" ]
+		},
+		files: {
+		    "aqeapp.css": "aqeapp.less"
+		}
+	    },
+
+	    production: {
+		options: {
+		    paths: [ "css" ],
+		    yuicompress: true
+		},
+		files: {
+		    "aqeapp.css": "aqeapp.less"
+		}
+	    }
+	},
+	watch: {
+	    css: { 
+		files: [ 'css/*.css' ],
+		tasks: [ 'less' ]
+	    }
+	},
 	clean: [ './dist/*', 'leag.zip' ]
     } );
 
